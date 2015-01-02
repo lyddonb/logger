@@ -126,7 +126,6 @@ impl Error for CouldNotOpenTerminal {
     }
 
     fn detail(&self) -> Option<String> {
-        Some("Logger could not open stdout as a terminal.".into_string())
+        Some("Logger could not open stdout as a terminal.".to_string())
     }
 }
-
