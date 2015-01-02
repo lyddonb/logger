@@ -56,6 +56,10 @@ impl BeforeMiddleware for Logger {
         req.extensions.insert::<StartTime, u64>(time::precise_time_ns());
         Ok(())
     }
+
+    fn catch(&self, _: &mut Request, err: IronError) -> IronResult<()> {
+        Err(err)
+    }
 }
 
 impl AfterMiddleware for Logger {
@@ -113,6 +117,10 @@ impl AfterMiddleware for Logger {
         };
 
         Ok(())
+    }
+
+    fn catch(&self, _: &mut Request, _: &mut Response, err: IronError) -> IronResult<()> {
+        Err(err)
     }
 }
 
